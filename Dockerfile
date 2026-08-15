@@ -10,7 +10,7 @@ WORKDIR /app
 RUN git clone --depth 1 --branch v1.2.0 https://github.com/Lightricks/LTX-2.git
 WORKDIR /app/LTX-2
 # uv manages its own python + the LTX lockfile env — identical to the proven pod worker.
-RUN uv python install 3.11 && uv sync --frozen && uv pip install hf_transfer runpod && uv cache clean
+RUN uv python install 3.11 && uv sync && uv pip install hf_transfer runpod && uv cache clean
 
 COPY handler.py /app/handler.py
 ENV LTX_MODELS_DIR=/runpod-volume/models LTX_QUANT=fp8-cast
